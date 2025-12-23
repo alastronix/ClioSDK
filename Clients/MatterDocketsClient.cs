@@ -29,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MatterDockets>> GetByIdAsync(int id)
         {
-            return await GetByIdAsync<MatterDockets>("matter_dockets/{id}.json", id);
+            return await GetByIdAsync("matter_dockets/{id}.json", id);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync<int>("matter_dockets/{id}.json", id);
+            return await DeleteAsync("matter_dockets/{id}.json", id);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CalendarEntryEventTypes>> GetByIdAsync(int id)
         {
-            return await GetByIdAsync<CalendarEntryEventTypes>("calendar_entry_event_types/{id}.json", id);
+            return await GetByIdAsync("calendar_entry_event_types/{id}.json", id);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync<int>("calendar_entry_event_types/{id}.json", id);
+            return await DeleteAsync("calendar_entry_event_types/{id}.json", id);
         }
     }
 }

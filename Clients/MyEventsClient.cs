@@ -29,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MyEvents>> GetByIdAsync(int id)
         {
-            return await GetByIdAsync<MyEvents>("my_events/{id}.json", id);
+            return await GetByIdAsync("my_events/{id}.json", id);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync<int>("my_events/{id}.json", id);
+            return await DeleteAsync("my_events/{id}.json", id);
         }
     }
 }
