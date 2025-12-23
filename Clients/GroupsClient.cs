@@ -1,3 +1,4 @@
+using Task = System.Threading.Tasks.Task;
 using ClioSDK.Core;
 using ClioSDK.Models;
 

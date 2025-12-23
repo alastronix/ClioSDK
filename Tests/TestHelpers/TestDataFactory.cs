@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ClioSDK.Models;
 using ClioSDK.Models.Requests;
+using System.Threading.Tasks;
 
 namespace ClioSDK.Tests.TestHelpers;
 
@@ -35,9 +36,9 @@ public static class TestDataFactory
         };
     }
 
-    public static ActivityRequest CreateActivityRequest()
+    public static ClioSDK.Models.Requests.ActivityRequest CreateActivityRequest()
     {
-        return new ActivityRequest
+        return new ClioSDK.Models.Requests.ActivityRequest
         {
             Description = "New Test Activity",
             Date = DateTime.UtcNow,
@@ -73,9 +74,9 @@ public static class TestDataFactory
         };
     }
 
-    public static MatterRequest CreateMatterRequest()
+    public static ClioSDK.Models.Requests.MatterRequest CreateMatterRequest()
     {
-        return new MatterRequest
+        return new ClioSDK.Models.Requests.MatterRequest
         {
             Description = "New Test Matter - Sample Case",
             DisplayNumber = "M9999",
@@ -116,9 +117,9 @@ public static class TestDataFactory
         };
     }
 
-    public static ContactRequest CreateContactRequest()
+    public static ClioSDK.Models.Requests.ContactRequest CreateContactRequest()
     {
-        return new ContactRequest
+        return new ClioSDK.Models.Requests.ContactRequest
         {
             Name = "New Test Contact",
             FirstName = "New",
@@ -182,9 +183,9 @@ public static class TestDataFactory
         };
     }
 
-    public static DocumentRequest CreateDocumentRequest()
+    public static ClioSDK.Models.Requests.DocumentRequest CreateDocumentRequest()
     {
-        return new DocumentRequest
+        return new ClioSDK.Models.Requests.DocumentRequest
         {
             Name = "New Test Document.pdf",
             Description = "New test document",
@@ -234,7 +235,7 @@ public static class TestDataFactory
 
     public static TaskRequest CreateTaskRequest()
     {
-        return new TaskRequest
+        return new ClioSDK.Models.Requests.TaskRequest
         {
             Name = "New Test Task",
             Description = "New task description",
@@ -313,9 +314,9 @@ public static class TestDataFactory
         return list;
     }
 
-    public static PaginatedResponse<T> CreatePaginatedResponse<T>(List<T> data) where T : class
+    public static ClioSDK.Core.PaginatedResponse<T> CreateClioSDK.Core.PaginatedResponse<T>(List<T> data) where T : class
     {
-        return new PaginatedResponse<T>
+        return new ClioSDK.Core.ClioSDK.Core.PaginatedResponse<T>
         {
             Data = data,
             Meta = new Meta
@@ -331,9 +332,9 @@ public static class TestDataFactory
         };
     }
 
-    public static ApiResponse<T> CreateApiResponse<T>(T data) where T : class
+    public static ClioSDK.Core.ApiResponse<T> CreateClioSDK.Core.ApiResponse<T>(T data) where T : class
     {
-        return new ApiResponse<T>
+        return new ClioSDK.Core.ClioSDK.Core.ApiResponse<T>
         {
             Data = data,
             Meta = new Meta()

@@ -5,6 +5,9 @@ using Moq;
 using Moq.Protected;
 using ClioSDK.Core;
 using ClioSDK.Models.Requests;
+using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Http;
 
 namespace ClioSDK.Tests.TestHelpers;
 

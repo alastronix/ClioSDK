@@ -9,6 +9,7 @@ using ClioSDK.Models.Requests;
 using ClioSDK.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;
+using Microsoft.Extensions.Http;
 
 namespace ClioSDK.Tests.Integration;
 

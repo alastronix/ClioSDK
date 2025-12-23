@@ -6,9 +6,9 @@ using Task = System.Threading.Tasks.Task;
 using ClioSDK.Clients;
 using ClioSDK.Models;
 using ClioSDK.Models.Requests;
-using ClioSDK.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;
+using Microsoft.Extensions.Http;
 
 namespace ClioSDK.Tests.Clients;
 
@@ -17,6 +17,7 @@ public class ContactsClientTests : TestBase
     private readonly ContactsClient _client;
 
     public ContactsClientTests()
+        {
     {
         _client = new ContactsClient(HttpClient);
     }

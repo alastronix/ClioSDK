@@ -1,5 +1,7 @@
+using Task = System.Threading.Tasks.Task;
 using ClioSDK.Core;
 using ClioSDK.Models;
+using ClioSDK.Models.Requests;
 
 namespace ClioSDK.Clients;
 

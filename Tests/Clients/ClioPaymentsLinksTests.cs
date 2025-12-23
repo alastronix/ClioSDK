@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 using ClioSDK.Clients;
 using ClioSDK.Models;
-using ClioSDK.Tests.TestHelpers;
 using FluentAssertions;
 using Xunit;
 using ClioSDK.Models.Requests;
+using Microsoft.Extensions.Http;
 
 namespace ClioSDK.Tests.Clients;
 
@@ -17,6 +17,7 @@ public class ClioPaymentsLinksClientTests : TestBase
     private readonly ClioPaymentsLinksClient _client;
 
     public ClioPaymentsLinksTests()
+        {
     {
         _client = new ClioPaymentsLinksClient(HttpClient);
     }
