@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class NotesClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public NotesClient(HttpClient httpClient) : base(httpClient, "notes")
     {

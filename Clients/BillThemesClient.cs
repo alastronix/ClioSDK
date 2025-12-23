@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class BillThemesClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public BillThemesClient(HttpClient httpClient) : base(httpClient, "bill_themes")
     {

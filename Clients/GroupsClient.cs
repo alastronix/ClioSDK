@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class GroupsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public GroupsClient(HttpClient httpClient) : base(httpClient, "groups")
     {

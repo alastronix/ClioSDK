@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class ContactsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public ContactsClient(HttpClient httpClient) : base(httpClient, "contacts")
     {

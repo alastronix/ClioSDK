@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class ActivitiesClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public ActivitiesClient(HttpClient httpClient) : base(httpClient, "activities")
     {

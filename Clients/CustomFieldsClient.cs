@@ -6,7 +6,6 @@ namespace ClioSDK.Clients;
 
 public class CustomFieldsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public CustomFieldsClient(HttpClient httpClient) : base(httpClient, "custom_fields")
     {
@@ -26,7 +25,6 @@ public class CustomFieldsClient : BaseClient
 
 public class CustomFieldSetsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public CustomFieldSetsClient(HttpClient httpClient) : base(httpClient, "custom_field_sets")
     {

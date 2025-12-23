@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class WebhooksClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public WebhooksClient(HttpClient httpClient) : base(httpClient, "webhooks")
     {

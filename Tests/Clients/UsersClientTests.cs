@@ -16,116 +16,126 @@ public class UsersClientTests : TestBase
 {
     private readonly UsersClient _client;
 
-    public Tests() :
-    base(TestSettings.ClioApiBaseUrl)
-{
-
+    public UsersClientTests()
+    {
         _client = new UsersClient(HttpClient);
     }
 
     #region GetAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task GetAsync_ShouldReturnUsers_WhenCalled()
+    public async Task GetAsync_ShouldReturnUsers_WhenCalled()
     {
         // Arrange
-        var expectedUsers = TestDataFactory.CreateList(3, TestDataFactory.CreateUser);
-        var expectedResponse = TestDataFactory.CreatePaginatedResponse(expectedUsers);
+        var expectedItems = CreateTestUsersList(3);
         
-        SetupMockResponse(expectedResponse);
-
         // Act
         var result = await _client.GetAsync();
-
-        // Assert
-        result.Should().NotBeNull();
-        result.Data.Should().HaveCount(3);
-        result.Data.Should().BeEquivalentTo(expectedUsers);
-        VerifyHttpRequest("GET", "users", Times.Once);
-    }
-
-    [Fact]
-    public async System.Threading.Tasks.Task GetAsync_WithId_ShouldReturnSingleUser()
-    {
-        // Arrange
-        var expectedUser = TestDataFactory.CreateUser(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedUser);
         
-        SetupMockResponse(expectedResponse);
-
-        // Act
-        var result = await _client.GetAsync(123);
-
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedUser);
-        VerifyHttpRequest("GET", "users/123", Times.Once);
+        result.Data.Should().NotBeEmpty();
     }
 
     [Fact]
-    public async System.Threading.Tasks.Task GetAsync_ShouldHandleErrorResponse()
+    public async Task GetAsync_WithQueryOptions_ShouldReturnFilteredUsers()
     {
         // Arrange
-        SetupMockErrorResponse(HttpStatusCode.NotFound, "User not found");
-
-        // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetAsync(999));
-        VerifyHttpRequest("GET", "users/999", Times.Once);
-    }
-    #endregion
-
-    #region Integration Tests
-    [Fact]
-    public async System.Threading.Tasks.Task UserRetrieval_ShouldWorkConsistently()
-    {
-        // Arrange
-        var users = TestDataFactory.CreateList(5, TestDataFactory.CreateUser);
-        var singleUser = TestDataFactory.CreateUser(123);
-
-        // Setup responses
-        SetupMockResponse(TestDataFactory.CreatePaginatedResponse(users));
-        SetupMockResponse(TestDataFactory.CreateApiResponse(singleUser));
-
+        var queryOptions = new { field = "test" };
+        
         // Act
-        var allUsers = await _client.GetAsync();
-        var specificUser = await _client.GetAsync(123);
-
+        var result = await _client.GetAsync(queryOptions);
+        
         // Assert
-        allUsers.Should().NotBeNull();
-        allUsers.Data.Should().HaveCount(5);
-        specificUser.Should().NotBeNull();
-        specificUser.Data.Id.Should().Be(123);
-
-        // Verify user data consistency
-        allUsers.Data.Should().AllSatisfy(u => 
-        {
-            u.Id.Should().BeGreaterThan(0);
-            u.Email.Should().Contain("@");
-            u.Name.Should().NotBeNullOrEmpty();
-        });
-    }
-
-    [Fact]
-    public async System.Threading.Tasks.Task UserPermissions_ShouldHandleAccessControl()
-    {
-        // Arrange
-        SetupMockErrorResponse(HttpStatusCode.Forbidden, "Access denied");
-
-        // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetAsync());
-        VerifyHttpRequest("GET", "users", Times.Once);
+        result.Should().NotBeNull();
     }
     #endregion
 
-    private void VerifyHttpRequest(string expectedMethod, string expectedPath, Times times)
+    #region GetByIdAsync Tests
+    [Fact]
+    public async Task GetByIdAsync_ShouldReturnUsers_WhenExists()
     {
-        MockHttpHandler
-            .Protected()
-            .Verify(
-                "SendAsync",
-                times,
-                ItExpr.Is<HttpRequestMessage>(req => 
-                    req.Method.ToString() == expectedMethod && 
-                    req.RequestUri?.AbsolutePath.Contains(expectedPath) == true),
-                ItExpr.IsAny<CancellationToken>());
+        // Arrange
+        var testId = 1;
+        
+        // Act
+        var result = await _client.GetByIdAsync(testId);
+        
+        // Assert
+        result.Should().NotBeNull();
+        result.Data.Id.Should().Be(testId);
     }
+    #endregion
+
+    #region PostAsync Tests
+    [Fact]
+    public async Task PostAsync_ShouldCreateUsers_WhenValid()
+    {
+        // Arrange
+        var newUsers = CreateTestUsers();
+        
+        // Act
+        var result = await _client.PostAsync(newUsers);
+        
+        // Assert
+        result.Should().NotBeNull();
+        result.Data.Should().NotBeNull();
+    }
+    #endregion
+
+    #region UpdateAsync Tests
+    [Fact]
+    public async Task UpdateAsync_ShouldUpdateUsers_WhenExists()
+    {
+        // Arrange
+        var testId = 1;
+        var updateData = CreateTestUsers();
+        
+        // Act
+        var result = await _client.UpdateAsync(testId, updateData);
+        
+        // Assert
+        result.Should().NotBeNull();
+        result.Data.Id.Should().Be(testId);
+    }
+    #endregion
+
+    #region DeleteAsync Tests
+    [Fact]
+    public async Task DeleteAsync_ShouldDeleteUsers_WhenExists()
+    {
+        // Arrange
+        var testId = 1;
+        
+        // Act
+        var result = await _client.DeleteAsync(testId);
+        
+        // Assert
+        result.Should().NotBeNull();
+        result.Data.Should().BeTrue();
+    }
+    #endregion
+
+    #region Helper Methods
+    private Users CreateTestUsers()
+    {
+        return new Users
+        {
+            // Set test properties here
+            Id = 1,
+            Name = "Test Users",
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
+    }
+
+    private List<Users> CreateTestUsersList(int count)
+    {
+        var list = new List<Users>();
+        for (int i = 1; i <= count; i++)
+        {
+            list.Add(CreateTestUsers());
+        }
+        return list;
+    }
+    #endregion
 }

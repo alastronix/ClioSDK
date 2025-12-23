@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class CalendarsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public CalendarsClient(HttpClient httpClient) : base(httpClient, "calendars")
     {

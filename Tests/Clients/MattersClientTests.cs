@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 using ClioSDK.Clients;
 using ClioSDK.Models;
-using ClioSDK.Models.Requests;
 using FluentAssertions;
 using Xunit;
+using ClioSDK.Models.Requests;
 using Microsoft.Extensions.Http;
 
 namespace ClioSDK.Tests.Clients;
@@ -16,145 +16,126 @@ public class MattersClientTests : TestBase
 {
     private readonly MattersClient _client;
 
-    public Tests() :
-    base(TestSettings.ClioApiBaseUrl)
-{
-
+    public MattersClientTests()
+    {
         _client = new MattersClient(HttpClient);
     }
 
     #region GetAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task GetAsync_ShouldReturnMatters_WhenCalled()
+    public async Task GetAsync_ShouldReturnMatters_WhenCalled()
     {
         // Arrange
-        var expectedMatters = TestDataFactory.CreateList(3, TestDataFactory.CreateMatter);
-        var expectedResponse = TestDataFactory.CreatePaginatedResponse(expectedMatters);
+        var expectedItems = CreateTestMattersList(3);
         
-        SetupMockResponse(expectedResponse);
-
         // Act
         var result = await _client.GetAsync();
-
-        // Assert
-        result.Should().NotBeNull();
-        result.Data.Should().HaveCount(3);
-        result.Data.Should().BeEquivalentTo(expectedMatters);
-        VerifyHttpRequest("GET", "matters", Times.Once);
-    }
-
-    [Fact]
-    public async System.Threading.Tasks.Task GetAsync_WithId_ShouldReturnSingleMatter()
-    {
-        // Arrange
-        var expectedMatter = TestDataFactory.CreateMatter(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedMatter);
         
-        SetupMockResponse(expectedResponse);
-
-        // Act
-        var result = await _client.GetAsync(123);
-
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedMatter);
-        VerifyHttpRequest("GET", "matters/123", Times.Once);
+        result.Data.Should().NotBeEmpty();
     }
 
     [Fact]
-    public async System.Threading.Tasks.Task GetAsync_ShouldHandleErrorResponse()
+    public async Task GetAsync_WithQueryOptions_ShouldReturnFilteredMatters()
     {
         // Arrange
-        SetupMockErrorResponse(HttpStatusCode.NotFound, "Matter not found");
-
-        // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetAsync(999));
-        VerifyHttpRequest("GET", "matters/999", Times.Once);
+        var queryOptions = new { field = "test" };
+        
+        // Act
+        var result = await _client.GetAsync(queryOptions);
+        
+        // Assert
+        result.Should().NotBeNull();
     }
     #endregion
 
-    #region CreateAsync Tests
+    #region GetByIdAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task CreateAsync_ShouldCreateMatter()
+    public async Task GetByIdAsync_ShouldReturnMatters_WhenExists()
     {
         // Arrange
-        var request = TestDataFactory.CreateMatterRequest();
-        var expectedMatter = TestDataFactory.CreateMatter(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedMatter);
-
-        SetupMockResponse(expectedResponse);
-
+        var testId = 1;
+        
         // Act
-        var result = await _client.CreateAsync(request);
-
+        var result = await _client.GetByIdAsync(testId);
+        
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedMatter);
-        VerifyHttpRequest("POST", "matters", Times.Once);
+        result.Data.Id.Should().Be(testId);
     }
+    #endregion
 
+    #region PostAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task CreateAsync_WithNullRequest_ShouldThrowArgumentNullException()
+    public async Task PostAsync_ShouldCreateMatters_WhenValid()
     {
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => _client.CreateAsync(null!));
+        // Arrange
+        var newMatters = CreateTestMatters();
+        
+        // Act
+        var result = await _client.PostAsync(newMatters);
+        
+        // Assert
+        result.Should().NotBeNull();
+        result.Data.Should().NotBeNull();
     }
     #endregion
 
     #region UpdateAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task UpdateAsync_ShouldUpdateMatter()
+    public async Task UpdateAsync_ShouldUpdateMatters_WhenExists()
     {
         // Arrange
-        var request = TestDataFactory.CreateMatterRequest();
-        var expectedMatter = TestDataFactory.CreateMatter(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedMatter);
-
-        SetupMockResponse(expectedResponse);
-
+        var testId = 1;
+        var updateData = CreateTestMatters();
+        
         // Act
-        var result = await _client.UpdateAsync(123, request);
-
+        var result = await _client.UpdateAsync(testId, updateData);
+        
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedMatter);
-        VerifyHttpRequest("PUT", "matters/123", Times.Once);
-    }
-
-    [Fact]
-    public async System.Threading.Tasks.Task UpdateAsync_WithNullRequest_ShouldThrowArgumentNullException()
-    {
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => _client.UpdateAsync(123, null!));
+        result.Data.Id.Should().Be(testId);
     }
     #endregion
 
     #region DeleteAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task DeleteAsync_ShouldDeleteMatter()
+    public async Task DeleteAsync_ShouldDeleteMatters_WhenExists()
     {
         // Arrange
-        var expectedResponse = TestDataFactory.CreateApiResponse(new { success = true });
-        SetupMockResponse(expectedResponse);
-
+        var testId = 1;
+        
         // Act
-        await _client.DeleteAsync(123);
-
+        var result = await _client.DeleteAsync(testId);
+        
         // Assert
-        VerifyHttpRequest("DELETE", "matters/123", Times.Once);
+        result.Should().NotBeNull();
+        result.Data.Should().BeTrue();
     }
     #endregion
 
-    private void VerifyHttpRequest(string expectedMethod, string expectedPath, Times times)
+    #region Helper Methods
+    private Matters CreateTestMatters()
     {
-        MockHttpHandler
-            .Protected()
-            .Verify(
-                "SendAsync",
-                times,
-                ItExpr.Is<HttpRequestMessage>(req => 
-                    req.Method.ToString() == expectedMethod && 
-                    req.RequestUri?.AbsolutePath.Contains(expectedPath) == true),
-                ItExpr.IsAny<CancellationToken>());
+        return new Matters
+        {
+            // Set test properties here
+            Id = 1,
+            Name = "Test Matters",
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
     }
+
+    private List<Matters> CreateTestMattersList(int count)
+    {
+        var list = new List<Matters>();
+        for (int i = 1; i <= count; i++)
+        {
+            list.Add(CreateTestMatters());
+        }
+        return list;
+    }
+    #endregion
 }

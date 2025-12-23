@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class DocumentsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public DocumentsClient(HttpClient httpClient) : base(httpClient, "documents")
     {

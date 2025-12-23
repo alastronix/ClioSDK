@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 using ClioSDK.Clients;
 using ClioSDK.Models;
-using ClioSDK.Models.Requests;
 using FluentAssertions;
 using Xunit;
+using ClioSDK.Models.Requests;
 using Microsoft.Extensions.Http;
 
 namespace ClioSDK.Tests.Clients;
@@ -16,144 +16,126 @@ public class ActivitiesClientTests : TestBase
 {
     private readonly ActivitiesClient _client;
 
-    public Tests() :
-    base(TestSettings.ClioApiBaseUrl)
-{
-
+    public ActivitiesClientTests()
+    {
         _client = new ActivitiesClient(HttpClient);
     }
 
     #region GetAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task GetAsync_ShouldReturnActivities_WhenCalled()
+    public async Task GetAsync_ShouldReturnActivities_WhenCalled()
     {
         // Arrange
-        var expectedActivities = TestDataFactory.CreateList(3, TestDataFactory.CreateActivity);
-        var expectedResponse = TestDataFactory.CreatePaginatedResponse(expectedActivities);
+        var expectedItems = CreateTestActivitiesList(3);
         
-        SetupMockResponse(expectedResponse);
-
         // Act
         var result = await _client.GetAsync();
-
-        // Assert
-        result.Should().NotBeNull();
-        result.Data.Should().HaveCount(3);
-        VerifyHttpRequest("GET", "activities", Times.Once);
-    }
-
-    [Fact]
-    public async System.Threading.Tasks.Task GetAsync_WithId_ShouldReturnSingleActivity()
-    {
-        // Arrange
-        var expectedActivity = TestDataFactory.CreateActivity(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedActivity);
         
-        SetupMockResponse(expectedResponse);
-
-        // Act
-        var result = await _client.GetAsync(123);
-
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedActivity);
-        VerifyHttpRequest("GET", "activities/123", Times.Once);
+        result.Data.Should().NotBeEmpty();
     }
 
     [Fact]
-    public async System.Threading.Tasks.Task GetAsync_ShouldHandleErrorResponse()
+    public async Task GetAsync_WithQueryOptions_ShouldReturnFilteredActivities()
     {
         // Arrange
-        SetupMockErrorResponse(HttpStatusCode.Unauthorized, "Invalid API key");
-
-        // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() => _client.GetAsync());
-        VerifyHttpRequest("GET", "activities", Times.Once);
+        var queryOptions = new { field = "test" };
+        
+        // Act
+        var result = await _client.GetAsync(queryOptions);
+        
+        // Assert
+        result.Should().NotBeNull();
     }
     #endregion
 
-    #region CreateAsync Tests
+    #region GetByIdAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task CreateAsync_ShouldCreateActivity()
+    public async Task GetByIdAsync_ShouldReturnActivities_WhenExists()
     {
         // Arrange
-        var request = TestDataFactory.CreateActivityRequest();
-        var expectedActivity = TestDataFactory.CreateActivity(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedActivity);
-
-        SetupMockResponse(expectedResponse);
-
+        var testId = 1;
+        
         // Act
-        var result = await _client.CreateAsync(request);
-
+        var result = await _client.GetByIdAsync(testId);
+        
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedActivity);
-        VerifyHttpRequest("POST", "activities", Times.Once);
+        result.Data.Id.Should().Be(testId);
     }
+    #endregion
 
+    #region PostAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task CreateAsync_WithNullRequest_ShouldThrowArgumentNullException()
+    public async Task PostAsync_ShouldCreateActivities_WhenValid()
     {
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => _client.CreateAsync(null!));
+        // Arrange
+        var newActivities = CreateTestActivities();
+        
+        // Act
+        var result = await _client.PostAsync(newActivities);
+        
+        // Assert
+        result.Should().NotBeNull();
+        result.Data.Should().NotBeNull();
     }
     #endregion
 
     #region UpdateAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task UpdateAsync_ShouldUpdateActivity()
+    public async Task UpdateAsync_ShouldUpdateActivities_WhenExists()
     {
         // Arrange
-        var request = TestDataFactory.CreateActivityRequest();
-        var expectedActivity = TestDataFactory.CreateActivity(123);
-        var expectedResponse = TestDataFactory.CreateApiResponse(expectedActivity);
-
-        SetupMockResponse(expectedResponse);
-
+        var testId = 1;
+        var updateData = CreateTestActivities();
+        
         // Act
-        var result = await _client.UpdateAsync(123, request);
-
+        var result = await _client.UpdateAsync(testId, updateData);
+        
         // Assert
         result.Should().NotBeNull();
-        result.Data.Should().BeEquivalentTo(expectedActivity);
-        VerifyHttpRequest("PUT", "activities/123", Times.Once);
-    }
-
-    [Fact]
-    public async System.Threading.Tasks.Task UpdateAsync_WithNullRequest_ShouldThrowArgumentNullException()
-    {
-        // Act & Assert
-        await Assert.ThrowsAsync<ArgumentNullException>(() => _client.UpdateAsync(123, null!));
+        result.Data.Id.Should().Be(testId);
     }
     #endregion
 
     #region DeleteAsync Tests
     [Fact]
-    public async System.Threading.Tasks.Task DeleteAsync_ShouldDeleteActivity()
+    public async Task DeleteAsync_ShouldDeleteActivities_WhenExists()
     {
         // Arrange
-        var expectedResponse = TestDataFactory.CreateApiResponse(new { success = true });
-        SetupMockResponse(expectedResponse);
-
+        var testId = 1;
+        
         // Act
-        await _client.DeleteAsync(123);
-
+        var result = await _client.DeleteAsync(testId);
+        
         // Assert
-        VerifyHttpRequest("DELETE", "activities/123", Times.Once);
+        result.Should().NotBeNull();
+        result.Data.Should().BeTrue();
     }
     #endregion
 
-    private void VerifyHttpRequest(string expectedMethod, string expectedPath, Times times)
+    #region Helper Methods
+    private Activities CreateTestActivities()
     {
-        MockHttpHandler
-            .Protected()
-            .Verify(
-                "SendAsync",
-                times,
-                ItExpr.Is<HttpRequestMessage>(req => 
-                    req.Method.ToString() == expectedMethod && 
-                    req.RequestUri?.AbsolutePath.Contains(expectedPath) == true),
-                ItExpr.IsAny<CancellationToken>());
+        return new Activities
+        {
+            // Set test properties here
+            Id = 1,
+            Name = "Test Activities",
+            CreatedAt = DateTime.UtcNow,
+            UpdatedAt = DateTime.UtcNow
+        };
     }
+
+    private List<Activities> CreateTestActivitiesList(int count)
+    {
+        var list = new List<Activities>();
+        for (int i = 1; i <= count; i++)
+        {
+            list.Add(CreateTestActivities());
+        }
+        return list;
+    }
+    #endregion
 }

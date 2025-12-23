@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class TrustAccountsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public TrustAccountsClient(HttpClient httpClient) : base(httpClient, "trust_accounts")
     {

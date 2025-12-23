@@ -8,7 +8,6 @@ namespace ClioSDK.Clients;
 
 public class TimersClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public TimersClient(HttpClient httpClient) : base(httpClient, "timers")
     {

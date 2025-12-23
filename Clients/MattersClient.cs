@@ -7,7 +7,6 @@ namespace ClioSDK.Clients;
 
 public class MattersClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
 
     public MattersClient(HttpClient httpClient) : base(httpClient, "matters")
     {
