@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all TrustLineItems
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<TrustLineItems>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<TrustLineItems>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<TrustLineItems>>("trust_line_items.json", parameters);
+            return await GetAsync<PaginatedResponse<TrustLineItems>>("trust_line_items.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<TrustLineItems>> GetByIdAsync(int id)
         {
-            return await GetAsync<TrustLineItems>("trust_line_items/{id}.json", id);
+            return await GetByIdAsync<TrustLineItems>("trust_line_items/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single TrustLineItems
         /// </summary>
-        public async Task<ApiResponse<TrustLineItems>> UpdateAsync(int id, TrustLineItemsRequest request)
+        public async Task<ApiResponse<TrustLineItems>> UpdateAsync(TrustLineItemsRequest request)
         {
-            return await UpdateAsync<TrustLineItemsRequest, TrustLineItems>("trust_line_items/{id}.json", id, request);
+            return await UpdateAsync<TrustLineItemsRequest, TrustLineItems>("trust_line_items/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("trust_line_items/{id}.json", id);
+            return await DeleteAsync<int>("trust_line_items/{id}.json", id);
         }
     }
 }

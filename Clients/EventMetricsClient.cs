@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all EventMetrics
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<EventMetrics>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<EventMetrics>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<EventMetrics>>("event_metrics.json", parameters);
+            return await GetAsync<PaginatedResponse<EventMetrics>>("event_metrics.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<EventMetrics>> GetByIdAsync(int id)
         {
-            return await GetAsync<EventMetrics>("event_metrics/{id}.json", id);
+            return await GetByIdAsync<EventMetrics>("event_metrics/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single EventMetrics
         /// </summary>
-        public async Task<ApiResponse<EventMetrics>> UpdateAsync(int id, EventMetricsRequest request)
+        public async Task<ApiResponse<EventMetrics>> UpdateAsync(EventMetricsRequest request)
         {
-            return await UpdateAsync<EventMetricsRequest, EventMetrics>("event_metrics/{id}.json", id, request);
+            return await UpdateAsync<EventMetricsRequest, EventMetrics>("event_metrics/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("event_metrics/{id}.json", id);
+            return await DeleteAsync<int>("event_metrics/{id}.json", id);
         }
     }
 }

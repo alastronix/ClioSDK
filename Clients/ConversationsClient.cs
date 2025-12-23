@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all Conversations
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<Conversations>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<Conversations>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<Conversations>>("conversations.json", parameters);
+            return await GetAsync<PaginatedResponse<Conversations>>("conversations.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<Conversations>> GetByIdAsync(int id)
         {
-            return await GetAsync<Conversations>("conversations/{id}.json", id);
+            return await GetByIdAsync<Conversations>("conversations/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single Conversations
         /// </summary>
-        public async Task<ApiResponse<Conversations>> UpdateAsync(int id, ConversationsRequest request)
+        public async Task<ApiResponse<Conversations>> UpdateAsync(ConversationsRequest request)
         {
-            return await UpdateAsync<ConversationsRequest, Conversations>("conversations/{id}.json", id, request);
+            return await UpdateAsync<ConversationsRequest, Conversations>("conversations/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("conversations/{id}.json", id);
+            return await DeleteAsync<int>("conversations/{id}.json", id);
         }
     }
 }

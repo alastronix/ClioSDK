@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all MatterDockets
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<MatterDockets>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<MatterDockets>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<MatterDockets>>("matter_dockets.json", parameters);
+            return await GetAsync<PaginatedResponse<MatterDockets>>("matter_dockets.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MatterDockets>> GetByIdAsync(int id)
         {
-            return await GetAsync<MatterDockets>("matter_dockets/{id}.json", id);
+            return await GetByIdAsync<MatterDockets>("matter_dockets/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single MatterDockets
         /// </summary>
-        public async Task<ApiResponse<MatterDockets>> UpdateAsync(int id, MatterDocketsRequest request)
+        public async Task<ApiResponse<MatterDockets>> UpdateAsync(MatterDocketsRequest request)
         {
-            return await UpdateAsync<MatterDocketsRequest, MatterDockets>("matter_dockets/{id}.json", id, request);
+            return await UpdateAsync<MatterDocketsRequest, MatterDockets>("matter_dockets/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("matter_dockets/{id}.json", id);
+            return await DeleteAsync<int>("matter_dockets/{id}.json", id);
         }
     }
 }

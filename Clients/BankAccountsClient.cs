@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class BankAccountsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public BankAccountsClient(HttpClient httpClient) : base(httpClient, "bank_accounts")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<BankAccount>> GetAsync(QueryOptions? options = null)
     {

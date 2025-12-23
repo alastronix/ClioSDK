@@ -9,9 +9,7 @@ public class TrustAccountsClient : BaseClient
 {
 
     public TrustAccountsClient(HttpClient httpClient) : base(httpClient, "trust_accounts")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<TrustAccount>> GetAsync(QueryOptions? options = null)
     {

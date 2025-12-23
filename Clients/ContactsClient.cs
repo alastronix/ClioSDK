@@ -10,7 +10,7 @@ public class ContactsClient : BaseClient
 
     public ContactsClient(HttpClient httpClient) : base(httpClient, "contacts")
     {
-        _httpClient = httpClient;
+// _httpClient is managed by BaseClient
     }
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Contact>> GetAsync(QueryOptions? options = null)

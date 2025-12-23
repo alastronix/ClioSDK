@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all Jurisdictions
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<Jurisdictions>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<Jurisdictions>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<Jurisdictions>>("jurisdictions.json", parameters);
+            return await GetAsync<PaginatedResponse<Jurisdictions>>("jurisdictions.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<Jurisdictions>> GetByIdAsync(int id)
         {
-            return await GetAsync<Jurisdictions>("jurisdictions/{id}.json", id);
+            return await GetByIdAsync<Jurisdictions>("jurisdictions/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single Jurisdictions
         /// </summary>
-        public async Task<ApiResponse<Jurisdictions>> UpdateAsync(int id, JurisdictionsRequest request)
+        public async Task<ApiResponse<Jurisdictions>> UpdateAsync(JurisdictionsRequest request)
         {
-            return await UpdateAsync<JurisdictionsRequest, Jurisdictions>("jurisdictions/{id}.json", id, request);
+            return await UpdateAsync<JurisdictionsRequest, Jurisdictions>("jurisdictions/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("jurisdictions/{id}.json", id);
+            return await DeleteAsync<int>("jurisdictions/{id}.json", id);
         }
     }
 }

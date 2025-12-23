@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class CalendarEntriesClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public CalendarEntriesClient(HttpClient httpClient) : base(httpClient, "calendarentries")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<CalendarEntrie>> GetAsync(QueryOptions? options = null)
     {

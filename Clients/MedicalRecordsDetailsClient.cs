@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all MedicalRecordsDetails
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<MedicalRecordsDetails>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<MedicalRecordsDetails>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<MedicalRecordsDetails>>("medical_records_details.json", parameters);
+            return await GetAsync<PaginatedResponse<MedicalRecordsDetails>>("medical_records_details.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MedicalRecordsDetails>> GetByIdAsync(int id)
         {
-            return await GetAsync<MedicalRecordsDetails>("medical_records_details/{id}.json", id);
+            return await GetByIdAsync<MedicalRecordsDetails>("medical_records_details/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single MedicalRecordsDetails
         /// </summary>
-        public async Task<ApiResponse<MedicalRecordsDetails>> UpdateAsync(int id, MedicalRecordsDetailsRequest request)
+        public async Task<ApiResponse<MedicalRecordsDetails>> UpdateAsync(MedicalRecordsDetailsRequest request)
         {
-            return await UpdateAsync<MedicalRecordsDetailsRequest, MedicalRecordsDetails>("medical_records_details/{id}.json", id, request);
+            return await UpdateAsync<MedicalRecordsDetailsRequest, MedicalRecordsDetails>("medical_records_details/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("medical_records_details/{id}.json", id);
+            return await DeleteAsync<int>("medical_records_details/{id}.json", id);
         }
     }
 }

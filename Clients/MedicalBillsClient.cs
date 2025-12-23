@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all MedicalBills
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<MedicalBills>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<MedicalBills>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<MedicalBills>>("medical_bills.json", parameters);
+            return await GetAsync<PaginatedResponse<MedicalBills>>("medical_bills.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MedicalBills>> GetByIdAsync(int id)
         {
-            return await GetAsync<MedicalBills>("medical_bills/{id}.json", id);
+            return await GetByIdAsync<MedicalBills>("medical_bills/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single MedicalBills
         /// </summary>
-        public async Task<ApiResponse<MedicalBills>> UpdateAsync(int id, MedicalBillsRequest request)
+        public async Task<ApiResponse<MedicalBills>> UpdateAsync(MedicalBillsRequest request)
         {
-            return await UpdateAsync<MedicalBillsRequest, MedicalBills>("medical_bills/{id}.json", id, request);
+            return await UpdateAsync<MedicalBillsRequest, MedicalBills>("medical_bills/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("medical_bills/{id}.json", id);
+            return await DeleteAsync<int>("medical_bills/{id}.json", id);
         }
     }
 }

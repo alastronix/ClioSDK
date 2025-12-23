@@ -6,12 +6,8 @@ namespace ClioSDK.Clients;
 
 public class BankTransactionsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public BankTransactionsClient(HttpClient httpClient) : base(httpClient, "banktransactions")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<BankTransaction>> GetAsync(QueryOptions? options = null)
     {

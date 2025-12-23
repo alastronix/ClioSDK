@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all InterestCharges
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<InterestCharges>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<InterestCharges>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<InterestCharges>>("interest_charges.json", parameters);
+            return await GetAsync<PaginatedResponse<InterestCharges>>("interest_charges.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<InterestCharges>> GetByIdAsync(int id)
         {
-            return await GetAsync<InterestCharges>("interest_charges/{id}.json", id);
+            return await GetByIdAsync<InterestCharges>("interest_charges/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single InterestCharges
         /// </summary>
-        public async Task<ApiResponse<InterestCharges>> UpdateAsync(int id, InterestChargesRequest request)
+        public async Task<ApiResponse<InterestCharges>> UpdateAsync(InterestChargesRequest request)
         {
-            return await UpdateAsync<InterestChargesRequest, InterestCharges>("interest_charges/{id}.json", id, request);
+            return await UpdateAsync<InterestChargesRequest, InterestCharges>("interest_charges/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("interest_charges/{id}.json", id);
+            return await DeleteAsync<int>("interest_charges/{id}.json", id);
         }
     }
 }

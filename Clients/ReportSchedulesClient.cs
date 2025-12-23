@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all ReportSchedules
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<ReportSchedules>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<ReportSchedules>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<ReportSchedules>>("report_schedules.json", parameters);
+            return await GetAsync<PaginatedResponse<ReportSchedules>>("report_schedules.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<ReportSchedules>> GetByIdAsync(int id)
         {
-            return await GetAsync<ReportSchedules>("report_schedules/{id}.json", id);
+            return await GetByIdAsync<ReportSchedules>("report_schedules/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single ReportSchedules
         /// </summary>
-        public async Task<ApiResponse<ReportSchedules>> UpdateAsync(int id, ReportSchedulesRequest request)
+        public async Task<ApiResponse<ReportSchedules>> UpdateAsync(ReportSchedulesRequest request)
         {
-            return await UpdateAsync<ReportSchedulesRequest, ReportSchedules>("report_schedules/{id}.json", id, request);
+            return await UpdateAsync<ReportSchedulesRequest, ReportSchedules>("report_schedules/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("report_schedules/{id}.json", id);
+            return await DeleteAsync<int>("report_schedules/{id}.json", id);
         }
     }
 }

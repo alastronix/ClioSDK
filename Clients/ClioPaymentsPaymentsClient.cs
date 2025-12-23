@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all ClioPaymentsPayments
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<ClioPaymentsPayments>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<ClioPaymentsPayments>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<ClioPaymentsPayments>>("clio_paymentspayments.json", parameters);
+            return await GetAsync<PaginatedResponse<ClioPaymentsPayments>>("clio_paymentspayments.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<ClioPaymentsPayments>> GetByIdAsync(int id)
         {
-            return await GetAsync<ClioPaymentsPayments>("clio_paymentspayments/{id}.json", id);
+            return await GetByIdAsync<ClioPaymentsPayments>("clio_paymentspayments/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single ClioPaymentsPayments
         /// </summary>
-        public async Task<ApiResponse<ClioPaymentsPayments>> UpdateAsync(int id, ClioPaymentsPaymentsRequest request)
+        public async Task<ApiResponse<ClioPaymentsPayments>> UpdateAsync(ClioPaymentsPaymentsRequest request)
         {
-            return await UpdateAsync<ClioPaymentsPaymentsRequest, ClioPaymentsPayments>("clio_paymentspayments/{id}.json", id, request);
+            return await UpdateAsync<ClioPaymentsPaymentsRequest, ClioPaymentsPayments>("clio_paymentspayments/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("clio_paymentspayments/{id}.json", id);
+            return await DeleteAsync<int>("clio_paymentspayments/{id}.json", id);
         }
     }
 }

@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class RelationshipsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public RelationshipsClient(HttpClient httpClient) : base(httpClient, "relationships")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Relationship>> GetAsync(QueryOptions? options = null)
     {

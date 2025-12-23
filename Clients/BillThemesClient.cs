@@ -10,7 +10,7 @@ public class BillThemesClient : BaseClient
 
     public BillThemesClient(HttpClient httpClient) : base(httpClient, "bill_themes")
     {
-        _httpClient = httpClient;
+// _httpClient is managed by BaseClient
     }
 
     public async System.Threading.Tasks.Task<PaginatedResponse<BillTheme>> GetAsync(QueryOptions? options = null)

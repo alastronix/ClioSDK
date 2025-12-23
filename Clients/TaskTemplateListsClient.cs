@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all TaskTemplateLists
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<TaskTemplateLists>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<TaskTemplateLists>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<TaskTemplateLists>>("task_template_lists.json", parameters);
+            return await GetAsync<PaginatedResponse<TaskTemplateLists>>("task_template_lists.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<TaskTemplateLists>> GetByIdAsync(int id)
         {
-            return await GetAsync<TaskTemplateLists>("task_template_lists/{id}.json", id);
+            return await GetByIdAsync<TaskTemplateLists>("task_template_lists/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single TaskTemplateLists
         /// </summary>
-        public async Task<ApiResponse<TaskTemplateLists>> UpdateAsync(int id, TaskTemplateListsRequest request)
+        public async Task<ApiResponse<TaskTemplateLists>> UpdateAsync(TaskTemplateListsRequest request)
         {
-            return await UpdateAsync<TaskTemplateListsRequest, TaskTemplateLists>("task_template_lists/{id}.json", id, request);
+            return await UpdateAsync<TaskTemplateListsRequest, TaskTemplateLists>("task_template_lists/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("task_template_lists/{id}.json", id);
+            return await DeleteAsync<int>("task_template_lists/{id}.json", id);
         }
     }
 }

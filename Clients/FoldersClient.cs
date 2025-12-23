@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all Folders
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<Folders>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<Folders>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<Folders>>("folders.json", parameters);
+            return await GetAsync<PaginatedResponse<Folders>>("folders.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<Folders>> GetByIdAsync(int id)
         {
-            return await GetAsync<Folders>("folders/{id}.json", id);
+            return await GetByIdAsync<Folders>("folders/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single Folders
         /// </summary>
-        public async Task<ApiResponse<Folders>> UpdateAsync(int id, FoldersRequest request)
+        public async Task<ApiResponse<Folders>> UpdateAsync(FoldersRequest request)
         {
-            return await UpdateAsync<FoldersRequest, Folders>("folders/{id}.json", id, request);
+            return await UpdateAsync<FoldersRequest, Folders>("folders/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("folders/{id}.json", id);
+            return await DeleteAsync<int>("folders/{id}.json", id);
         }
     }
 }

@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class ExpenseCategoriesClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public ExpenseCategoriesClient(HttpClient httpClient) : base(httpClient, "expensecategories")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<ExpenseCategorie>> GetAsync(QueryOptions? options = null)
     {

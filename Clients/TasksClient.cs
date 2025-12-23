@@ -9,9 +9,7 @@ public class TasksClient : BaseClient
 {
 
     public TasksClient(HttpClient httpClient) : base(httpClient, "tasks")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Task>> GetAsync(QueryOptions? options = null)
     {

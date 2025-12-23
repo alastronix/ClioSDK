@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class PracticeAreasClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public PracticeAreasClient(HttpClient httpClient) : base(httpClient, "practiceareas")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<PracticeArea>> GetAsync(QueryOptions? options = null)
     {

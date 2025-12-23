@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all MatterContacts
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<MatterContacts>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<MatterContacts>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<MatterContacts>>("matter_contacts.json", parameters);
+            return await GetAsync<PaginatedResponse<MatterContacts>>("matter_contacts.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MatterContacts>> GetByIdAsync(int id)
         {
-            return await GetAsync<MatterContacts>("matter_contacts/{id}.json", id);
+            return await GetByIdAsync<MatterContacts>("matter_contacts/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single MatterContacts
         /// </summary>
-        public async Task<ApiResponse<MatterContacts>> UpdateAsync(int id, MatterContactsRequest request)
+        public async Task<ApiResponse<MatterContacts>> UpdateAsync(MatterContactsRequest request)
         {
-            return await UpdateAsync<MatterContactsRequest, MatterContacts>("matter_contacts/{id}.json", id, request);
+            return await UpdateAsync<MatterContactsRequest, MatterContacts>("matter_contacts/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("matter_contacts/{id}.json", id);
+            return await DeleteAsync<int>("matter_contacts/{id}.json", id);
         }
     }
 }

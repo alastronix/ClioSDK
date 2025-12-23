@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all ConversationMessages
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<ConversationMessages>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<ConversationMessages>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<ConversationMessages>>("conversation_messages.json", parameters);
+            return await GetAsync<PaginatedResponse<ConversationMessages>>("conversation_messages.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<ConversationMessages>> GetByIdAsync(int id)
         {
-            return await GetAsync<ConversationMessages>("conversation_messages/{id}.json", id);
+            return await GetByIdAsync<ConversationMessages>("conversation_messages/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single ConversationMessages
         /// </summary>
-        public async Task<ApiResponse<ConversationMessages>> UpdateAsync(int id, ConversationMessagesRequest request)
+        public async Task<ApiResponse<ConversationMessages>> UpdateAsync(ConversationMessagesRequest request)
         {
-            return await UpdateAsync<ConversationMessagesRequest, ConversationMessages>("conversation_messages/{id}.json", id, request);
+            return await UpdateAsync<ConversationMessagesRequest, ConversationMessages>("conversation_messages/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("conversation_messages/{id}.json", id);
+            return await DeleteAsync<int>("conversation_messages/{id}.json", id);
         }
     }
 }

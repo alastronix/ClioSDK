@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class LineItemsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public LineItemsClient(HttpClient httpClient) : base(httpClient, "lineitems")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<LineItem>> GetAsync(QueryOptions? options = null)
     {

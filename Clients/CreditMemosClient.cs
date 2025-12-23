@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CreditMemos
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CreditMemos>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CreditMemos>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CreditMemos>>("credit_memos.json", parameters);
+            return await GetAsync<PaginatedResponse<CreditMemos>>("credit_memos.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CreditMemos>> GetByIdAsync(int id)
         {
-            return await GetAsync<CreditMemos>("credit_memos/{id}.json", id);
+            return await GetByIdAsync<CreditMemos>("credit_memos/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CreditMemos
         /// </summary>
-        public async Task<ApiResponse<CreditMemos>> UpdateAsync(int id, CreditMemosRequest request)
+        public async Task<ApiResponse<CreditMemos>> UpdateAsync(CreditMemosRequest request)
         {
-            return await UpdateAsync<CreditMemosRequest, CreditMemos>("credit_memos/{id}.json", id, request);
+            return await UpdateAsync<CreditMemosRequest, CreditMemos>("credit_memos/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("credit_memos/{id}.json", id);
+            return await DeleteAsync<int>("credit_memos/{id}.json", id);
         }
     }
 }

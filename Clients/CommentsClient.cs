@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all Comments
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<Comments>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<Comments>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<Comments>>("comments.json", parameters);
+            return await GetAsync<PaginatedResponse<Comments>>("comments.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<Comments>> GetByIdAsync(int id)
         {
-            return await GetAsync<Comments>("comments/{id}.json", id);
+            return await GetByIdAsync<Comments>("comments/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single Comments
         /// </summary>
-        public async Task<ApiResponse<Comments>> UpdateAsync(int id, CommentsRequest request)
+        public async Task<ApiResponse<Comments>> UpdateAsync(CommentsRequest request)
         {
-            return await UpdateAsync<CommentsRequest, Comments>("comments/{id}.json", id, request);
+            return await UpdateAsync<CommentsRequest, Comments>("comments/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("comments/{id}.json", id);
+            return await DeleteAsync<int>("comments/{id}.json", id);
         }
     }
 }

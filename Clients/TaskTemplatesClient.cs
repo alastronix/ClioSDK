@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all TaskTemplates
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<TaskTemplates>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<TaskTemplates>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<TaskTemplates>>("task_templates.json", parameters);
+            return await GetAsync<PaginatedResponse<TaskTemplates>>("task_templates.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<TaskTemplates>> GetByIdAsync(int id)
         {
-            return await GetAsync<TaskTemplates>("task_templates/{id}.json", id);
+            return await GetByIdAsync<TaskTemplates>("task_templates/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single TaskTemplates
         /// </summary>
-        public async Task<ApiResponse<TaskTemplates>> UpdateAsync(int id, TaskTemplatesRequest request)
+        public async Task<ApiResponse<TaskTemplates>> UpdateAsync(TaskTemplatesRequest request)
         {
-            return await UpdateAsync<TaskTemplatesRequest, TaskTemplates>("task_templates/{id}.json", id, request);
+            return await UpdateAsync<TaskTemplatesRequest, TaskTemplates>("task_templates/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("task_templates/{id}.json", id);
+            return await DeleteAsync<int>("task_templates/{id}.json", id);
         }
     }
 }

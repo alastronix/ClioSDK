@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all DocumentAutomations
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<DocumentAutomations>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<DocumentAutomations>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<DocumentAutomations>>("document_automations.json", parameters);
+            return await GetAsync<PaginatedResponse<DocumentAutomations>>("document_automations.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<DocumentAutomations>> GetByIdAsync(int id)
         {
-            return await GetAsync<DocumentAutomations>("document_automations/{id}.json", id);
+            return await GetByIdAsync<DocumentAutomations>("document_automations/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single DocumentAutomations
         /// </summary>
-        public async Task<ApiResponse<DocumentAutomations>> UpdateAsync(int id, DocumentAutomationsRequest request)
+        public async Task<ApiResponse<DocumentAutomations>> UpdateAsync(DocumentAutomationsRequest request)
         {
-            return await UpdateAsync<DocumentAutomationsRequest, DocumentAutomations>("document_automations/{id}.json", id, request);
+            return await UpdateAsync<DocumentAutomationsRequest, DocumentAutomations>("document_automations/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_automations/{id}.json", id);
+            return await DeleteAsync<int>("document_automations/{id}.json", id);
         }
     }
 }

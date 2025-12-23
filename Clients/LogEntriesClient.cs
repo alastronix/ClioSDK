@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all LogEntries
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<LogEntries>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<LogEntries>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<LogEntries>>("log_entries.json", parameters);
+            return await GetAsync<PaginatedResponse<LogEntries>>("log_entries.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<LogEntries>> GetByIdAsync(int id)
         {
-            return await GetAsync<LogEntries>("log_entries/{id}.json", id);
+            return await GetByIdAsync<LogEntries>("log_entries/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single LogEntries
         /// </summary>
-        public async Task<ApiResponse<LogEntries>> UpdateAsync(int id, LogEntriesRequest request)
+        public async Task<ApiResponse<LogEntries>> UpdateAsync(LogEntriesRequest request)
         {
-            return await UpdateAsync<LogEntriesRequest, LogEntries>("log_entries/{id}.json", id, request);
+            return await UpdateAsync<LogEntriesRequest, LogEntries>("log_entries/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("log_entries/{id}.json", id);
+            return await DeleteAsync<int>("log_entries/{id}.json", id);
         }
     }
 }

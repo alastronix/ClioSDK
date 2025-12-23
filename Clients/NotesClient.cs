@@ -9,9 +9,7 @@ public class NotesClient : BaseClient
 {
 
     public NotesClient(HttpClient httpClient) : base(httpClient, "notes")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Note>> GetAsync(QueryOptions? options = null)
     {

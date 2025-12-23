@@ -10,7 +10,7 @@ public class CalendarsClient : BaseClient
 
     public CalendarsClient(HttpClient httpClient) : base(httpClient, "calendars")
     {
-        _httpClient = httpClient;
+// _httpClient is managed by BaseClient
     }
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Calendar>> GetAsync(QueryOptions? options = null)

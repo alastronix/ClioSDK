@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all ReportPresets
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<ReportPresets>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<ReportPresets>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<ReportPresets>>("report_presets.json", parameters);
+            return await GetAsync<PaginatedResponse<ReportPresets>>("report_presets.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<ReportPresets>> GetByIdAsync(int id)
         {
-            return await GetAsync<ReportPresets>("report_presets/{id}.json", id);
+            return await GetByIdAsync<ReportPresets>("report_presets/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single ReportPresets
         /// </summary>
-        public async Task<ApiResponse<ReportPresets>> UpdateAsync(int id, ReportPresetsRequest request)
+        public async Task<ApiResponse<ReportPresets>> UpdateAsync(ReportPresetsRequest request)
         {
-            return await UpdateAsync<ReportPresetsRequest, ReportPresets>("report_presets/{id}.json", id, request);
+            return await UpdateAsync<ReportPresetsRequest, ReportPresets>("report_presets/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("report_presets/{id}.json", id);
+            return await DeleteAsync<int>("report_presets/{id}.json", id);
         }
     }
 }

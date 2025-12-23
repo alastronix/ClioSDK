@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all Currencies
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<Currencies>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<Currencies>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<Currencies>>("currencies.json", parameters);
+            return await GetAsync<PaginatedResponse<Currencies>>("currencies.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<Currencies>> GetByIdAsync(int id)
         {
-            return await GetAsync<Currencies>("currencies/{id}.json", id);
+            return await GetByIdAsync<Currencies>("currencies/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single Currencies
         /// </summary>
-        public async Task<ApiResponse<Currencies>> UpdateAsync(int id, CurrenciesRequest request)
+        public async Task<ApiResponse<Currencies>> UpdateAsync(CurrenciesRequest request)
         {
-            return await UpdateAsync<CurrenciesRequest, Currencies>("currencies/{id}.json", id, request);
+            return await UpdateAsync<CurrenciesRequest, Currencies>("currencies/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("currencies/{id}.json", id);
+            return await DeleteAsync<int>("currencies/{id}.json", id);
         }
     }
 }

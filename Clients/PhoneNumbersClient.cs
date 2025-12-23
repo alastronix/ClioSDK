@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all PhoneNumbers
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<PhoneNumbers>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<PhoneNumbers>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<PhoneNumbers>>("phone_numbers.json", parameters);
+            return await GetAsync<PaginatedResponse<PhoneNumbers>>("phone_numbers.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<PhoneNumbers>> GetByIdAsync(int id)
         {
-            return await GetAsync<PhoneNumbers>("phone_numbers/{id}.json", id);
+            return await GetByIdAsync<PhoneNumbers>("phone_numbers/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single PhoneNumbers
         /// </summary>
-        public async Task<ApiResponse<PhoneNumbers>> UpdateAsync(int id, PhoneNumbersRequest request)
+        public async Task<ApiResponse<PhoneNumbers>> UpdateAsync(PhoneNumbersRequest request)
         {
-            return await UpdateAsync<PhoneNumbersRequest, PhoneNumbers>("phone_numbers/{id}.json", id, request);
+            return await UpdateAsync<PhoneNumbersRequest, PhoneNumbers>("phone_numbers/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("phone_numbers/{id}.json", id);
+            return await DeleteAsync<int>("phone_numbers/{id}.json", id);
         }
     }
 }

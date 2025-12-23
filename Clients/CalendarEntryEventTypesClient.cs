@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CalendarEntryEventTypes
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CalendarEntryEventTypes>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CalendarEntryEventTypes>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CalendarEntryEventTypes>>("calendar_entry_event_types.json", parameters);
+            return await GetAsync<PaginatedResponse<CalendarEntryEventTypes>>("calendar_entry_event_types.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CalendarEntryEventTypes>> GetByIdAsync(int id)
         {
-            return await GetAsync<CalendarEntryEventTypes>("calendar_entry_event_types/{id}.json", id);
+            return await GetByIdAsync<CalendarEntryEventTypes>("calendar_entry_event_types/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CalendarEntryEventTypes
         /// </summary>
-        public async Task<ApiResponse<CalendarEntryEventTypes>> UpdateAsync(int id, CalendarEntryEventTypesRequest request)
+        public async Task<ApiResponse<CalendarEntryEventTypes>> UpdateAsync(CalendarEntryEventTypesRequest request)
         {
-            return await UpdateAsync<CalendarEntryEventTypesRequest, CalendarEntryEventTypes>("calendar_entry_event_types/{id}.json", id, request);
+            return await UpdateAsync<CalendarEntryEventTypesRequest, CalendarEntryEventTypes>("calendar_entry_event_types/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("calendar_entry_event_types/{id}.json", id);
+            return await DeleteAsync<int>("calendar_entry_event_types/{id}.json", id);
         }
     }
 }

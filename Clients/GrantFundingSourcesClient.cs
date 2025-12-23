@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all GrantFundingSources
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<GrantFundingSources>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<GrantFundingSources>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<GrantFundingSources>>("grant_funding_sources.json", parameters);
+            return await GetAsync<PaginatedResponse<GrantFundingSources>>("grant_funding_sources.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<GrantFundingSources>> GetByIdAsync(int id)
         {
-            return await GetAsync<GrantFundingSources>("grant_funding_sources/{id}.json", id);
+            return await GetByIdAsync<GrantFundingSources>("grant_funding_sources/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single GrantFundingSources
         /// </summary>
-        public async Task<ApiResponse<GrantFundingSources>> UpdateAsync(int id, GrantFundingSourcesRequest request)
+        public async Task<ApiResponse<GrantFundingSources>> UpdateAsync(GrantFundingSourcesRequest request)
         {
-            return await UpdateAsync<GrantFundingSourcesRequest, GrantFundingSources>("grant_funding_sources/{id}.json", id, request);
+            return await UpdateAsync<GrantFundingSourcesRequest, GrantFundingSources>("grant_funding_sources/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("grant_funding_sources/{id}.json", id);
+            return await DeleteAsync<int>("grant_funding_sources/{id}.json", id);
         }
     }
 }

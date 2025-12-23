@@ -9,9 +9,7 @@ public class DocumentsClient : BaseClient
 {
 
     public DocumentsClient(HttpClient httpClient) : base(httpClient, "documents")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Document>> GetAsync(QueryOptions? options = null)
     {

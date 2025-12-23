@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all MatterStages
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<MatterStages>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<MatterStages>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<MatterStages>>("matter_stages.json", parameters);
+            return await GetAsync<PaginatedResponse<MatterStages>>("matter_stages.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<MatterStages>> GetByIdAsync(int id)
         {
-            return await GetAsync<MatterStages>("matter_stages/{id}.json", id);
+            return await GetByIdAsync<MatterStages>("matter_stages/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single MatterStages
         /// </summary>
-        public async Task<ApiResponse<MatterStages>> UpdateAsync(int id, MatterStagesRequest request)
+        public async Task<ApiResponse<MatterStages>> UpdateAsync(MatterStagesRequest request)
         {
-            return await UpdateAsync<MatterStagesRequest, MatterStages>("matter_stages/{id}.json", id, request);
+            return await UpdateAsync<MatterStagesRequest, MatterStages>("matter_stages/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("matter_stages/{id}.json", id);
+            return await DeleteAsync<int>("matter_stages/{id}.json", id);
         }
     }
 }

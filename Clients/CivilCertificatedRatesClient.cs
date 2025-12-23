@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CivilCertificatedRates
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CivilCertificatedRates>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CivilCertificatedRates>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CivilCertificatedRates>>("civil_certificated_rates.json", parameters);
+            return await GetAsync<PaginatedResponse<CivilCertificatedRates>>("civil_certificated_rates.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CivilCertificatedRates>> GetByIdAsync(int id)
         {
-            return await GetAsync<CivilCertificatedRates>("civil_certificated_rates/{id}.json", id);
+            return await GetByIdAsync<CivilCertificatedRates>("civil_certificated_rates/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CivilCertificatedRates
         /// </summary>
-        public async Task<ApiResponse<CivilCertificatedRates>> UpdateAsync(int id, CivilCertificatedRatesRequest request)
+        public async Task<ApiResponse<CivilCertificatedRates>> UpdateAsync(CivilCertificatedRatesRequest request)
         {
-            return await UpdateAsync<CivilCertificatedRatesRequest, CivilCertificatedRates>("civil_certificated_rates/{id}.json", id, request);
+            return await UpdateAsync<CivilCertificatedRatesRequest, CivilCertificatedRates>("civil_certificated_rates/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("civil_certificated_rates/{id}.json", id);
+            return await DeleteAsync<int>("civil_certificated_rates/{id}.json", id);
         }
     }
 }

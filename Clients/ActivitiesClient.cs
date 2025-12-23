@@ -10,7 +10,7 @@ public class ActivitiesClient : BaseClient
 
     public ActivitiesClient(HttpClient httpClient) : base(httpClient, "activities")
     {
-        _httpClient = httpClient;
+// _httpClient is managed by BaseClient
     }
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Activity>> GetAsync(QueryOptions? options = null)

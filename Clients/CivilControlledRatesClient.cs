@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CivilControlledRates
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CivilControlledRates>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CivilControlledRates>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CivilControlledRates>>("civil_controlled_rates.json", parameters);
+            return await GetAsync<PaginatedResponse<CivilControlledRates>>("civil_controlled_rates.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CivilControlledRates>> GetByIdAsync(int id)
         {
-            return await GetAsync<CivilControlledRates>("civil_controlled_rates/{id}.json", id);
+            return await GetByIdAsync<CivilControlledRates>("civil_controlled_rates/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CivilControlledRates
         /// </summary>
-        public async Task<ApiResponse<CivilControlledRates>> UpdateAsync(int id, CivilControlledRatesRequest request)
+        public async Task<ApiResponse<CivilControlledRates>> UpdateAsync(CivilControlledRatesRequest request)
         {
-            return await UpdateAsync<CivilControlledRatesRequest, CivilControlledRates>("civil_controlled_rates/{id}.json", id, request);
+            return await UpdateAsync<CivilControlledRatesRequest, CivilControlledRates>("civil_controlled_rates/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("civil_controlled_rates/{id}.json", id);
+            return await DeleteAsync<int>("civil_controlled_rates/{id}.json", id);
         }
     }
 }

@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all BillableClients
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<BillableClients>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<BillableClients>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<BillableClients>>("billableclients.json", parameters);
+            return await GetAsync<PaginatedResponse<BillableClients>>("billableclients.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<BillableClients>> GetByIdAsync(int id)
         {
-            return await GetAsync<BillableClients>("billableclients/{id}.json", id);
+            return await GetByIdAsync<BillableClients>("billableclients/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single BillableClients
         /// </summary>
-        public async Task<ApiResponse<BillableClients>> UpdateAsync(int id, BillableClientsRequest request)
+        public async Task<ApiResponse<BillableClients>> UpdateAsync(BillableClientsRequest request)
         {
-            return await UpdateAsync<BillableClientsRequest, BillableClients>("billableclients/{id}.json", id, request);
+            return await UpdateAsync<BillableClientsRequest, BillableClients>("billableclients/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("billableclients/{id}.json", id);
+            return await DeleteAsync<int>("billableclients/{id}.json", id);
         }
     }
 }

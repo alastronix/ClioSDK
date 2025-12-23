@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all BillableMatters
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<BillableMatters>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<BillableMatters>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<BillableMatters>>("billablematters.json", parameters);
+            return await GetAsync<PaginatedResponse<BillableMatters>>("billablematters.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<BillableMatters>> GetByIdAsync(int id)
         {
-            return await GetAsync<BillableMatters>("billablematters/{id}.json", id);
+            return await GetByIdAsync<BillableMatters>("billablematters/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single BillableMatters
         /// </summary>
-        public async Task<ApiResponse<BillableMatters>> UpdateAsync(int id, BillableMattersRequest request)
+        public async Task<ApiResponse<BillableMatters>> UpdateAsync(BillableMattersRequest request)
         {
-            return await UpdateAsync<BillableMattersRequest, BillableMatters>("billablematters/{id}.json", id, request);
+            return await UpdateAsync<BillableMattersRequest, BillableMatters>("billablematters/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("billablematters/{id}.json", id);
+            return await DeleteAsync<int>("billablematters/{id}.json", id);
         }
     }
 }

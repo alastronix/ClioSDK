@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all ActivityDescriptions
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<ActivityDescriptions>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<ActivityDescriptions>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<ActivityDescriptions>>("activity_descriptions.json", parameters);
+            return await GetAsync<PaginatedResponse<ActivityDescriptions>>("activity_descriptions.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<ActivityDescriptions>> GetByIdAsync(int id)
         {
-            return await GetAsync<ActivityDescriptions>("activity_descriptions/{id}.json", id);
+            return await GetByIdAsync<ActivityDescriptions>("activity_descriptions/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single ActivityDescriptions
         /// </summary>
-        public async Task<ApiResponse<ActivityDescriptions>> UpdateAsync(int id, ActivityDescriptionsRequest request)
+        public async Task<ApiResponse<ActivityDescriptions>> UpdateAsync(ActivityDescriptionsRequest request)
         {
-            return await UpdateAsync<ActivityDescriptionsRequest, ActivityDescriptions>("activity_descriptions/{id}.json", id, request);
+            return await UpdateAsync<ActivityDescriptionsRequest, ActivityDescriptions>("activity_descriptions/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("activity_descriptions/{id}.json", id);
+            return await DeleteAsync<int>("activity_descriptions/{id}.json", id);
         }
     }
 }

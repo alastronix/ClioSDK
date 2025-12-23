@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all DocumentCategories
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<DocumentCategories>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<DocumentCategories>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<DocumentCategories>>("document_categories.json", parameters);
+            return await GetAsync<PaginatedResponse<DocumentCategories>>("document_categories.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<DocumentCategories>> GetByIdAsync(int id)
         {
-            return await GetAsync<DocumentCategories>("document_categories/{id}.json", id);
+            return await GetByIdAsync<DocumentCategories>("document_categories/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single DocumentCategories
         /// </summary>
-        public async Task<ApiResponse<DocumentCategories>> UpdateAsync(int id, DocumentCategoriesRequest request)
+        public async Task<ApiResponse<DocumentCategories>> UpdateAsync(DocumentCategoriesRequest request)
         {
-            return await UpdateAsync<DocumentCategoriesRequest, DocumentCategories>("document_categories/{id}.json", id, request);
+            return await UpdateAsync<DocumentCategoriesRequest, DocumentCategories>("document_categories/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_categories/{id}.json", id);
+            return await DeleteAsync<int>("document_categories/{id}.json", id);
         }
     }
 }

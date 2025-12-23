@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all TaskTypes
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<TaskTypes>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<TaskTypes>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<TaskTypes>>("task_types.json", parameters);
+            return await GetAsync<PaginatedResponse<TaskTypes>>("task_types.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<TaskTypes>> GetByIdAsync(int id)
         {
-            return await GetAsync<TaskTypes>("task_types/{id}.json", id);
+            return await GetByIdAsync<TaskTypes>("task_types/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single TaskTypes
         /// </summary>
-        public async Task<ApiResponse<TaskTypes>> UpdateAsync(int id, TaskTypesRequest request)
+        public async Task<ApiResponse<TaskTypes>> UpdateAsync(TaskTypesRequest request)
         {
-            return await UpdateAsync<TaskTypesRequest, TaskTypes>("task_types/{id}.json", id, request);
+            return await UpdateAsync<TaskTypesRequest, TaskTypes>("task_types/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("task_types/{id}.json", id);
+            return await DeleteAsync<int>("task_types/{id}.json", id);
         }
     }
 }

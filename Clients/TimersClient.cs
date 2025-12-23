@@ -10,9 +10,7 @@ public class TimersClient : BaseClient
 {
 
     public TimersClient(HttpClient httpClient) : base(httpClient, "timers")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Timer>> GetAsync(QueryOptions? options = null)
     {

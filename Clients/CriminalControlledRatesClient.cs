@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CriminalControlledRates
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CriminalControlledRates>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CriminalControlledRates>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CriminalControlledRates>>("criminal_controlled_rates.json", parameters);
+            return await GetAsync<PaginatedResponse<CriminalControlledRates>>("criminal_controlled_rates.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CriminalControlledRates>> GetByIdAsync(int id)
         {
-            return await GetAsync<CriminalControlledRates>("criminal_controlled_rates/{id}.json", id);
+            return await GetByIdAsync<CriminalControlledRates>("criminal_controlled_rates/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CriminalControlledRates
         /// </summary>
-        public async Task<ApiResponse<CriminalControlledRates>> UpdateAsync(int id, CriminalControlledRatesRequest request)
+        public async Task<ApiResponse<CriminalControlledRates>> UpdateAsync(CriminalControlledRatesRequest request)
         {
-            return await UpdateAsync<CriminalControlledRatesRequest, CriminalControlledRates>("criminal_controlled_rates/{id}.json", id, request);
+            return await UpdateAsync<CriminalControlledRatesRequest, CriminalControlledRates>("criminal_controlled_rates/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("criminal_controlled_rates/{id}.json", id);
+            return await DeleteAsync<int>("criminal_controlled_rates/{id}.json", id);
         }
     }
 }

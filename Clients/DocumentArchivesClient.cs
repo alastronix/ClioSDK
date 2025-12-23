@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all DocumentArchives
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<DocumentArchives>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<DocumentArchives>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<DocumentArchives>>("document_archives.json", parameters);
+            return await GetAsync<PaginatedResponse<DocumentArchives>>("document_archives.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<DocumentArchives>> GetByIdAsync(int id)
         {
-            return await GetAsync<DocumentArchives>("document_archives/{id}.json", id);
+            return await GetByIdAsync<DocumentArchives>("document_archives/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single DocumentArchives
         /// </summary>
-        public async Task<ApiResponse<DocumentArchives>> UpdateAsync(int id, DocumentArchivesRequest request)
+        public async Task<ApiResponse<DocumentArchives>> UpdateAsync(DocumentArchivesRequest request)
         {
-            return await UpdateAsync<DocumentArchivesRequest, DocumentArchives>("document_archives/{id}.json", id, request);
+            return await UpdateAsync<DocumentArchivesRequest, DocumentArchives>("document_archives/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_archives/{id}.json", id);
+            return await DeleteAsync<int>("document_archives/{id}.json", id);
         }
     }
 }

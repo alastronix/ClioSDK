@@ -8,9 +8,7 @@ public class CustomFieldsClient : BaseClient
 {
 
     public CustomFieldsClient(HttpClient httpClient) : base(httpClient, "custom_fields")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<CustomField>> GetAsync(QueryOptions? options = null)
     {
@@ -27,9 +25,7 @@ public class CustomFieldSetsClient : BaseClient
 {
 
     public CustomFieldSetsClient(HttpClient httpClient) : base(httpClient, "custom_field_sets")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<CustomFieldSet>> GetAsync(QueryOptions? options = null)
     {

@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all UtbmsCodes
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<UtbmsCodes>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<UtbmsCodes>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<UtbmsCodes>>("utbmscodes.json", parameters);
+            return await GetAsync<PaginatedResponse<UtbmsCodes>>("utbmscodes.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<UtbmsCodes>> GetByIdAsync(int id)
         {
-            return await GetAsync<UtbmsCodes>("utbmscodes/{id}.json", id);
+            return await GetByIdAsync<UtbmsCodes>("utbmscodes/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single UtbmsCodes
         /// </summary>
-        public async Task<ApiResponse<UtbmsCodes>> UpdateAsync(int id, UtbmsCodesRequest request)
+        public async Task<ApiResponse<UtbmsCodes>> UpdateAsync(UtbmsCodesRequest request)
         {
-            return await UpdateAsync<UtbmsCodesRequest, UtbmsCodes>("utbmscodes/{id}.json", id, request);
+            return await UpdateAsync<UtbmsCodesRequest, UtbmsCodes>("utbmscodes/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("utbmscodes/{id}.json", id);
+            return await DeleteAsync<int>("utbmscodes/{id}.json", id);
         }
     }
 }

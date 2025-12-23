@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all OutstandingClientBalances
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<OutstandingClientBalances>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<OutstandingClientBalances>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<OutstandingClientBalances>>("outstandingclientbalances.json", parameters);
+            return await GetAsync<PaginatedResponse<OutstandingClientBalances>>("outstandingclientbalances.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<OutstandingClientBalances>> GetByIdAsync(int id)
         {
-            return await GetAsync<OutstandingClientBalances>("outstandingclientbalances/{id}.json", id);
+            return await GetByIdAsync<OutstandingClientBalances>("outstandingclientbalances/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single OutstandingClientBalances
         /// </summary>
-        public async Task<ApiResponse<OutstandingClientBalances>> UpdateAsync(int id, OutstandingClientBalancesRequest request)
+        public async Task<ApiResponse<OutstandingClientBalances>> UpdateAsync(OutstandingClientBalancesRequest request)
         {
-            return await UpdateAsync<OutstandingClientBalancesRequest, OutstandingClientBalances>("outstandingclientbalances/{id}.json", id, request);
+            return await UpdateAsync<OutstandingClientBalancesRequest, OutstandingClientBalances>("outstandingclientbalances/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("outstandingclientbalances/{id}.json", id);
+            return await DeleteAsync<int>("outstandingclientbalances/{id}.json", id);
         }
     }
 }

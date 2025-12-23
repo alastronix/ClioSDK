@@ -10,7 +10,7 @@ public class WebhooksClient : BaseClient
 
     public WebhooksClient(HttpClient httpClient) : base(httpClient, "webhooks")
     {
-        _httpClient = httpClient;
+// _httpClient is managed by BaseClient
     }
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Webhook>> GetAsync(QueryOptions? options = null)

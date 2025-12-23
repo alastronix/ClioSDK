@@ -9,9 +9,7 @@ public class GroupsClient : BaseClient
 {
 
     public GroupsClient(HttpClient httpClient) : base(httpClient, "groups")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<Group>> GetAsync(QueryOptions? options = null)
     {

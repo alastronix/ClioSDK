@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all BankTransfers
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<BankTransfers>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<BankTransfers>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<BankTransfers>>("bank_transfers.json", parameters);
+            return await GetAsync<PaginatedResponse<BankTransfers>>("bank_transfers.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<BankTransfers>> GetByIdAsync(int id)
         {
-            return await GetAsync<BankTransfers>("bank_transfers/{id}.json", id);
+            return await GetByIdAsync<BankTransfers>("bank_transfers/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single BankTransfers
         /// </summary>
-        public async Task<ApiResponse<BankTransfers>> UpdateAsync(int id, BankTransfersRequest request)
+        public async Task<ApiResponse<BankTransfers>> UpdateAsync(BankTransfersRequest request)
         {
-            return await UpdateAsync<BankTransfersRequest, BankTransfers>("bank_transfers/{id}.json", id, request);
+            return await UpdateAsync<BankTransfersRequest, BankTransfers>("bank_transfers/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("bank_transfers/{id}.json", id);
+            return await DeleteAsync<int>("bank_transfers/{id}.json", id);
         }
     }
 }

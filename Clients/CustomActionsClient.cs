@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CustomActions
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CustomActions>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CustomActions>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CustomActions>>("customactions.json", parameters);
+            return await GetAsync<PaginatedResponse<CustomActions>>("customactions.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CustomActions>> GetByIdAsync(int id)
         {
-            return await GetAsync<CustomActions>("customactions/{id}.json", id);
+            return await GetByIdAsync<CustomActions>("customactions/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CustomActions
         /// </summary>
-        public async Task<ApiResponse<CustomActions>> UpdateAsync(int id, CustomActionsRequest request)
+        public async Task<ApiResponse<CustomActions>> UpdateAsync(CustomActionsRequest request)
         {
-            return await UpdateAsync<CustomActionsRequest, CustomActions>("customactions/{id}.json", id, request);
+            return await UpdateAsync<CustomActionsRequest, CustomActions>("customactions/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("customactions/{id}.json", id);
+            return await DeleteAsync<int>("customactions/{id}.json", id);
         }
     }
 }

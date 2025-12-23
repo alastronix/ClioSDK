@@ -7,12 +7,8 @@ namespace ClioSDK.Clients;
 
 public class TextSnippetsClient : BaseClient
 {
-    private readonly HttpClient _httpClient;
-
     public TextSnippetsClient(HttpClient httpClient) : base(httpClient, "textsnippets")
-    {
-        _httpClient = httpClient;
-    }
+    {}
 
     public async System.Threading.Tasks.Task<PaginatedResponse<TextSnippet>> GetAsync(QueryOptions? options = null)
     {

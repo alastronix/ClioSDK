@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all CalendarVisibilities
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<CalendarVisibilities>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<CalendarVisibilities>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<CalendarVisibilities>>("calendar_visibilities.json", parameters);
+            return await GetAsync<PaginatedResponse<CalendarVisibilities>>("calendar_visibilities.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<CalendarVisibilities>> GetByIdAsync(int id)
         {
-            return await GetAsync<CalendarVisibilities>("calendar_visibilities/{id}.json", id);
+            return await GetByIdAsync<CalendarVisibilities>("calendar_visibilities/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single CalendarVisibilities
         /// </summary>
-        public async Task<ApiResponse<CalendarVisibilities>> UpdateAsync(int id, CalendarVisibilitiesRequest request)
+        public async Task<ApiResponse<CalendarVisibilities>> UpdateAsync(CalendarVisibilitiesRequest request)
         {
-            return await UpdateAsync<CalendarVisibilitiesRequest, CalendarVisibilities>("calendar_visibilities/{id}.json", id, request);
+            return await UpdateAsync<CalendarVisibilitiesRequest, CalendarVisibilities>("calendar_visibilities/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("calendar_visibilities/{id}.json", id);
+            return await DeleteAsync<int>("calendar_visibilities/{id}.json", id);
         }
     }
 }

@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all JurisdictionsToTriggers
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<JurisdictionsToTriggers>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<JurisdictionsToTriggers>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<JurisdictionsToTriggers>>("jurisdictions_to_triggers.json", parameters);
+            return await GetAsync<PaginatedResponse<JurisdictionsToTriggers>>("jurisdictions_to_triggers.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<JurisdictionsToTriggers>> GetByIdAsync(int id)
         {
-            return await GetAsync<JurisdictionsToTriggers>("jurisdictions_to_triggers/{id}.json", id);
+            return await GetByIdAsync<JurisdictionsToTriggers>("jurisdictions_to_triggers/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single JurisdictionsToTriggers
         /// </summary>
-        public async Task<ApiResponse<JurisdictionsToTriggers>> UpdateAsync(int id, JurisdictionsToTriggersRequest request)
+        public async Task<ApiResponse<JurisdictionsToTriggers>> UpdateAsync(JurisdictionsToTriggersRequest request)
         {
-            return await UpdateAsync<JurisdictionsToTriggersRequest, JurisdictionsToTriggers>("jurisdictions_to_triggers/{id}.json", id, request);
+            return await UpdateAsync<JurisdictionsToTriggersRequest, JurisdictionsToTriggers>("jurisdictions_to_triggers/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("jurisdictions_to_triggers/{id}.json", id);
+            return await DeleteAsync<int>("jurisdictions_to_triggers/{id}.json", id);
         }
     }
 }

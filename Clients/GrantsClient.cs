@@ -19,10 +19,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Return the data for all Grants
         /// </summary>
-        public async Task<ApiResponse<PaginatedResponse<Grants>>> GetAsync(
-            Dictionary<string, object> parameters = null)
+        public async Task<ApiResponse<PaginatedResponse<Grants>>> GetAsync(QueryOptions? options = null)
         {
-            return await GetAsync<PaginatedResponse<Grants>>("grants.json", parameters);
+            return await GetAsync<PaginatedResponse<Grants>>("grants.json", options);
         }
 
         /// <summary>
@@ -30,7 +29,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<Grants>> GetByIdAsync(int id)
         {
-            return await GetAsync<Grants>("grants/{id}.json", id);
+            return await GetByIdAsync<Grants>("grants/{id}.json", id);
         }
 
         /// <summary>
@@ -44,9 +43,9 @@ namespace ClioSDK.Clients
         /// <summary>
         /// Update a single Grants
         /// </summary>
-        public async Task<ApiResponse<Grants>> UpdateAsync(int id, GrantsRequest request)
+        public async Task<ApiResponse<Grants>> UpdateAsync(GrantsRequest request)
         {
-            return await UpdateAsync<GrantsRequest, Grants>("grants/{id}.json", id, request);
+            return await UpdateAsync<GrantsRequest, Grants>("grants/{id}.json", request);
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("grants/{id}.json", id);
+            return await DeleteAsync<int>("grants/{id}.json", id);
         }
     }
 }
