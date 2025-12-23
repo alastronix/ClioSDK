@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ClioSDK</PackageId>
+    <PackageVersion>2.0.0</PackageVersion>
+    <Authors>Clio SDK Team</Authors>
+    <Description>Comprehensive SDK for Clio Legal Practice Management API - .NET 9 Edition</Description>
+    <PackageTags>clio;legal;api;sdk;practice-management;dotnet9</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>

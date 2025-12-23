@@ -1,0 +1,39 @@
+using ClioSDK.Core;
+using ClioSDK.Models;
+
+namespace ClioSDK.Clients;
+
+public class ExpenseCategoriesClient : BaseClient
+{
+    private readonly HttpClient _httpClient;
+
+    public ExpenseCategoriesClient(HttpClient httpClient) : base(httpClient, "expensecategories")
+    {
+        _httpClient = httpClient;
+    }
+
+    public async System.Threading.Tasks.Task<PaginatedResponse<ExpenseCategorie>> GetAsync(QueryOptions? options = null)
+    {
+        return await GetListAsync<ExpenseCategorie>("", options);
+    }
+
+    public async System.Threading.Tasks.Task<ApiResponse<ExpenseCategorie>> GetAsync(int id, QueryOptions? options = null)
+    {
+        return await GetAsync<ExpenseCategorie>(id.ToString(), options);
+    }
+
+    public async System.Threading.Tasks.Task<ApiResponse<ExpenseCategorie>> CreateAsync(ExpenseCategorieRequest request)
+    {
+        return await CreateAsync<ExpenseCategorie>("", request);
+    }
+
+    public async System.Threading.Tasks.Task<ApiResponse<ExpenseCategorie>> UpdateAsync(int id, ExpenseCategorieRequest request)
+    {
+        return await UpdateAsync<ExpenseCategorie>(id.ToString(), request);
+    }
+
+    public async System.Threading.Tasks.Task DeleteAsync(int id)
+    {
+        await DeleteAsync(id.ToString());
+    }
+}
