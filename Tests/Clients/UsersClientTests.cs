@@ -16,9 +16,10 @@ public class UsersClientTests : TestBase
 {
     private readonly UsersClient _client;
 
-    public UsersClientTests()
-        {
-    {
+    public Tests() :
+    base(TestSettings.ClioApiBaseUrl)
+{
+
         _client = new UsersClient(HttpClient);
     }
 

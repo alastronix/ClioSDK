@@ -16,9 +16,10 @@ public class ContactsClientTests : TestBase
 {
     private readonly ContactsClient _client;
 
-    public ContactsClientTests()
-        {
-    {
+    public Tests() :
+    base(TestSettings.ClioApiBaseUrl)
+{
+
         _client = new ContactsClient(HttpClient);
     }
 

@@ -16,9 +16,10 @@ public class MattersClientTests : TestBase
 {
     private readonly MattersClient _client;
 
-    public MattersClientTests()
-        {
-    {
+    public Tests() :
+    base(TestSettings.ClioApiBaseUrl)
+{
+
         _client = new MattersClient(HttpClient);
     }
 

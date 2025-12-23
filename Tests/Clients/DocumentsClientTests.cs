@@ -16,9 +16,10 @@ public class DocumentsClientTests : TestBase
 {
     private readonly DocumentsClient _client;
 
-    public DocumentsClientTests()
-        {
-    {
+    public Tests() :
+    base(TestSettings.ClioApiBaseUrl)
+{
+
         _client = new DocumentsClient(HttpClient);
     }
 
