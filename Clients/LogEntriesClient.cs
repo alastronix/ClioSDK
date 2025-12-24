@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single LogEntries
-        /// </summary>
-        public async Task<ApiResponse<LogEntries>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("log_entries/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new LogEntries
         /// </summary>
         public async Task<ApiResponse<LogEntries>> CreateAsync(LogEntriesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("log_entries/{id}.json", id);
+            await base.DeleteAsync("log_entries/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

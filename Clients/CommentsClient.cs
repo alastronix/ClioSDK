@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Comments
-        /// </summary>
-        public async Task<ApiResponse<Comments>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("comments/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Comments
         /// </summary>
         public async Task<ApiResponse<Comments>> CreateAsync(CommentsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("comments/{id}.json", id);
+            await base.DeleteAsync("comments/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

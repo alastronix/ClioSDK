@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single CivilCertificatedRates
-        /// </summary>
-        public async Task<ApiResponse<CivilCertificatedRates>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("civil_certificated_rates/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new CivilCertificatedRates
         /// </summary>
         public async Task<ApiResponse<CivilCertificatedRates>> CreateAsync(CivilCertificatedRatesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("civil_certificated_rates/{id}.json", id);
+            await base.DeleteAsync("civil_certificated_rates/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

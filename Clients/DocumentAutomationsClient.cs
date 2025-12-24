@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single DocumentAutomations
-        /// </summary>
-        public async Task<ApiResponse<DocumentAutomations>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("document_automations/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new DocumentAutomations
         /// </summary>
         public async Task<ApiResponse<DocumentAutomations>> CreateAsync(DocumentAutomationsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_automations/{id}.json", id);
+            await base.DeleteAsync("document_automations/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

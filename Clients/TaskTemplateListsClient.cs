@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single TaskTemplateLists
-        /// </summary>
-        public async Task<ApiResponse<TaskTemplateLists>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("task_template_lists/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new TaskTemplateLists
         /// </summary>
         public async Task<ApiResponse<TaskTemplateLists>> CreateAsync(TaskTemplateListsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("task_template_lists/{id}.json", id);
+            await base.DeleteAsync("task_template_lists/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

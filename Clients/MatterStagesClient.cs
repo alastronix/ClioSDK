@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single MatterStages
-        /// </summary>
-        public async Task<ApiResponse<MatterStages>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("matter_stages/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new MatterStages
         /// </summary>
         public async Task<ApiResponse<MatterStages>> CreateAsync(MatterStagesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("matter_stages/{id}.json", id);
+            await base.DeleteAsync("matter_stages/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

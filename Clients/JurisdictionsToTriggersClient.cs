@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single JurisdictionsToTriggers
-        /// </summary>
-        public async Task<ApiResponse<JurisdictionsToTriggers>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("jurisdictions_to_triggers/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new JurisdictionsToTriggers
         /// </summary>
         public async Task<ApiResponse<JurisdictionsToTriggers>> CreateAsync(JurisdictionsToTriggersRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("jurisdictions_to_triggers/{id}.json", id);
+            await base.DeleteAsync("jurisdictions_to_triggers/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

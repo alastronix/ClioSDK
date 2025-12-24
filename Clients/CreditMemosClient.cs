@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single CreditMemos
-        /// </summary>
-        public async Task<ApiResponse<CreditMemos>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("credit_memos/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new CreditMemos
         /// </summary>
         public async Task<ApiResponse<CreditMemos>> CreateAsync(CreditMemosRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("credit_memos/{id}.json", id);
+            await base.DeleteAsync("credit_memos/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

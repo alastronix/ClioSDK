@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single OutstandingClientBalances
-        /// </summary>
-        public async Task<ApiResponse<OutstandingClientBalances>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("outstandingclientbalances/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new OutstandingClientBalances
         /// </summary>
         public async Task<ApiResponse<OutstandingClientBalances>> CreateAsync(OutstandingClientBalancesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("outstandingclientbalances/{id}.json", id);
+            await base.DeleteAsync("outstandingclientbalances/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

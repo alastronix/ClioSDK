@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single ClioPaymentsPayments
-        /// </summary>
-        public async Task<ApiResponse<ClioPaymentsPayments>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("clio_paymentspayments/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new ClioPaymentsPayments
         /// </summary>
         public async Task<ApiResponse<ClioPaymentsPayments>> CreateAsync(ClioPaymentsPaymentsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("clio_paymentspayments/{id}.json", id);
+            await base.DeleteAsync("clio_paymentspayments/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

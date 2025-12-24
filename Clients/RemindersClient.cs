@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Reminders
-        /// </summary>
-        public async Task<ApiResponse<Reminders>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("reminders/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Reminders
         /// </summary>
         public async Task<ApiResponse<Reminders>> CreateAsync(RemindersRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("reminders/{id}.json", id);
+            await base.DeleteAsync("reminders/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

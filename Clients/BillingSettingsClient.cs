@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single BillingSettings
-        /// </summary>
-        public async Task<ApiResponse<BillingSettings>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("billing_settings/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new BillingSettings
         /// </summary>
         public async Task<ApiResponse<BillingSettings>> CreateAsync(BillingSettingsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("billing_settings/{id}.json", id);
+            await base.DeleteAsync("billing_settings/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

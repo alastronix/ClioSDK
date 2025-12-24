@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single BillableMatters
-        /// </summary>
-        public async Task<ApiResponse<BillableMatters>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("billablematters/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new BillableMatters
         /// </summary>
         public async Task<ApiResponse<BillableMatters>> CreateAsync(BillableMattersRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("billablematters/{id}.json", id);
+            await base.DeleteAsync("billablematters/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

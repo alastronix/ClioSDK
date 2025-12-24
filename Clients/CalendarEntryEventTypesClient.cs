@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single CalendarEntryEventTypes
-        /// </summary>
-        public async Task<ApiResponse<CalendarEntryEventTypes>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("calendar_entry_event_types/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new CalendarEntryEventTypes
         /// </summary>
         public async Task<ApiResponse<CalendarEntryEventTypes>> CreateAsync(CalendarEntryEventTypesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("calendar_entry_event_types/{id}.json", id);
+            await base.DeleteAsync("calendar_entry_event_types/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

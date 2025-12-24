@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Grants
-        /// </summary>
-        public async Task<ApiResponse<Grants>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("grants/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Grants
         /// </summary>
         public async Task<ApiResponse<Grants>> CreateAsync(GrantsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("grants/{id}.json", id);
+            await base.DeleteAsync("grants/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

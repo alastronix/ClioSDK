@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single TrustRequests
-        /// </summary>
-        public async Task<ApiResponse<TrustRequests>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("trust_requests/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new TrustRequests
         /// </summary>
         public async Task<ApiResponse<TrustRequests>> CreateAsync(TrustRequestsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("trust_requests/{id}.json", id);
+            await base.DeleteAsync("trust_requests/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

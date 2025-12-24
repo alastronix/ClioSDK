@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single DocumentCategories
-        /// </summary>
-        public async Task<ApiResponse<DocumentCategories>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("document_categories/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new DocumentCategories
         /// </summary>
         public async Task<ApiResponse<DocumentCategories>> CreateAsync(DocumentCategoriesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_categories/{id}.json", id);
+            await base.DeleteAsync("document_categories/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

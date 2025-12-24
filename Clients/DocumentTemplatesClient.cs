@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single DocumentTemplates
-        /// </summary>
-        public async Task<ApiResponse<DocumentTemplates>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("document_templates/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new DocumentTemplates
         /// </summary>
         public async Task<ApiResponse<DocumentTemplates>> CreateAsync(DocumentTemplatesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_templates/{id}.json", id);
+            await base.DeleteAsync("document_templates/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

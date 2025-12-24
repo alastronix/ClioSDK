@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single MyEvents
-        /// </summary>
-        public async Task<ApiResponse<MyEvents>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("my_events/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new MyEvents
         /// </summary>
         public async Task<ApiResponse<MyEvents>> CreateAsync(MyEventsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("my_events/{id}.json", id);
+            await base.DeleteAsync("my_events/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

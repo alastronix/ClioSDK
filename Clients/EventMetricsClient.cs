@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single EventMetrics
-        /// </summary>
-        public async Task<ApiResponse<EventMetrics>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("event_metrics/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new EventMetrics
         /// </summary>
         public async Task<ApiResponse<EventMetrics>> CreateAsync(EventMetricsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("event_metrics/{id}.json", id);
+            await base.DeleteAsync("event_metrics/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

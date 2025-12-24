@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single UtbmsSets
-        /// </summary>
-        public async Task<ApiResponse<UtbmsSets>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("utbmssets/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new UtbmsSets
         /// </summary>
         public async Task<ApiResponse<UtbmsSets>> CreateAsync(UtbmsSetsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("utbmssets/{id}.json", id);
+            await base.DeleteAsync("utbmssets/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Folders
-        /// </summary>
-        public async Task<ApiResponse<Folders>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("folders/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Folders
         /// </summary>
         public async Task<ApiResponse<Folders>> CreateAsync(FoldersRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("folders/{id}.json", id);
+            await base.DeleteAsync("folders/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

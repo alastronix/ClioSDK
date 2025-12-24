@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single EmailAddresses
-        /// </summary>
-        public async Task<ApiResponse<EmailAddresses>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("email_addresses/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new EmailAddresses
         /// </summary>
         public async Task<ApiResponse<EmailAddresses>> CreateAsync(EmailAddressesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("email_addresses/{id}.json", id);
+            await base.DeleteAsync("email_addresses/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

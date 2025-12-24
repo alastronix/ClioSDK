@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single PhoneNumbers
-        /// </summary>
-        public async Task<ApiResponse<PhoneNumbers>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("phone_numbers/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new PhoneNumbers
         /// </summary>
         public async Task<ApiResponse<PhoneNumbers>> CreateAsync(PhoneNumbersRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("phone_numbers/{id}.json", id);
+            await base.DeleteAsync("phone_numbers/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single BankTransfers
-        /// </summary>
-        public async Task<ApiResponse<BankTransfers>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("bank_transfers/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new BankTransfers
         /// </summary>
         public async Task<ApiResponse<BankTransfers>> CreateAsync(BankTransfersRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("bank_transfers/{id}.json", id);
+            await base.DeleteAsync("bank_transfers/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

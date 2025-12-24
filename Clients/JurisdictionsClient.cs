@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Jurisdictions
-        /// </summary>
-        public async Task<ApiResponse<Jurisdictions>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("jurisdictions/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Jurisdictions
         /// </summary>
         public async Task<ApiResponse<Jurisdictions>> CreateAsync(JurisdictionsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("jurisdictions/{id}.json", id);
+            await base.DeleteAsync("jurisdictions/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

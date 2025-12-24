@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single MatterDockets
-        /// </summary>
-        public async Task<ApiResponse<MatterDockets>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("matter_dockets/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new MatterDockets
         /// </summary>
         public async Task<ApiResponse<MatterDockets>> CreateAsync(MatterDocketsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("matter_dockets/{id}.json", id);
+            await base.DeleteAsync("matter_dockets/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

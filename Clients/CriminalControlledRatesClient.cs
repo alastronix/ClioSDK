@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single CriminalControlledRates
-        /// </summary>
-        public async Task<ApiResponse<CriminalControlledRates>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("criminal_controlled_rates/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new CriminalControlledRates
         /// </summary>
         public async Task<ApiResponse<CriminalControlledRates>> CreateAsync(CriminalControlledRatesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("criminal_controlled_rates/{id}.json", id);
+            await base.DeleteAsync("criminal_controlled_rates/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

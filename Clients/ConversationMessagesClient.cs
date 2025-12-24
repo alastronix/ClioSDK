@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single ConversationMessages
-        /// </summary>
-        public async Task<ApiResponse<ConversationMessages>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("conversation_messages/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new ConversationMessages
         /// </summary>
         public async Task<ApiResponse<ConversationMessages>> CreateAsync(ConversationMessagesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("conversation_messages/{id}.json", id);
+            await base.DeleteAsync("conversation_messages/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

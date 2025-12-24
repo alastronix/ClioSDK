@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single MedicalRecordsDetails
-        /// </summary>
-        public async Task<ApiResponse<MedicalRecordsDetails>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("medical_records_details/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new MedicalRecordsDetails
         /// </summary>
         public async Task<ApiResponse<MedicalRecordsDetails>> CreateAsync(MedicalRecordsDetailsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("medical_records_details/{id}.json", id);
+            await base.DeleteAsync("medical_records_details/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

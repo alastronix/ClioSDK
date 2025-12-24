@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single TaskTypes
-        /// </summary>
-        public async Task<ApiResponse<TaskTypes>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("task_types/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new TaskTypes
         /// </summary>
         public async Task<ApiResponse<TaskTypes>> CreateAsync(TaskTypesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("task_types/{id}.json", id);
+            await base.DeleteAsync("task_types/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

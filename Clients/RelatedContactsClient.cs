@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single RelatedContacts
-        /// </summary>
-        public async Task<ApiResponse<RelatedContacts>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("related_contacts/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new RelatedContacts
         /// </summary>
         public async Task<ApiResponse<RelatedContacts>> CreateAsync(RelatedContactsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("related_contacts/{id}.json", id);
+            await base.DeleteAsync("related_contacts/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

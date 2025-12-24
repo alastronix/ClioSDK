@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single DocumentVersions
-        /// </summary>
-        public async Task<ApiResponse<DocumentVersions>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("document_versions/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new DocumentVersions
         /// </summary>
         public async Task<ApiResponse<DocumentVersions>> CreateAsync(DocumentVersionsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("document_versions/{id}.json", id);
+            await base.DeleteAsync("document_versions/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

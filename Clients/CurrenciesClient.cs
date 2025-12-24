@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Currencies
-        /// </summary>
-        public async Task<ApiResponse<Currencies>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("currencies/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Currencies
         /// </summary>
         public async Task<ApiResponse<Currencies>> CreateAsync(CurrenciesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("currencies/{id}.json", id);
+            await base.DeleteAsync("currencies/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

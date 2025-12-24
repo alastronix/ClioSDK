@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single CustomActions
-        /// </summary>
-        public async Task<ApiResponse<CustomActions>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("customactions/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new CustomActions
         /// </summary>
         public async Task<ApiResponse<CustomActions>> CreateAsync(CustomActionsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("customactions/{id}.json", id);
+            await base.DeleteAsync("customactions/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

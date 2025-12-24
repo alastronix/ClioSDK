@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single Allocations
-        /// </summary>
-        public async Task<ApiResponse<Allocations>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("allocations/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new Allocations
         /// </summary>
         public async Task<ApiResponse<Allocations>> CreateAsync(AllocationsRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("allocations/{id}.json", id);
+            await base.DeleteAsync("allocations/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }

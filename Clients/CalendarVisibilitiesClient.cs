@@ -25,14 +25,6 @@ namespace ClioSDK.Clients
         }
 
         /// <summary>
-        /// Return the data for a single CalendarVisibilities
-        /// </summary>
-        public async Task<ApiResponse<CalendarVisibilities>> GetByIdAsync(int id)
-        {
-            return await GetByIdAsync("calendar_visibilities/{id}.json", id);
-        }
-
-        /// <summary>
         /// Create a new CalendarVisibilities
         /// </summary>
         public async Task<ApiResponse<CalendarVisibilities>> CreateAsync(CalendarVisibilitiesRequest request)
@@ -53,7 +45,8 @@ namespace ClioSDK.Clients
         /// </summary>
         public async Task<ApiResponse<object>> DeleteAsync(int id)
         {
-            return await DeleteAsync("calendar_visibilities/{id}.json", id);
+            await base.DeleteAsync("calendar_visibilities/{id}.json");
+                return new ApiResponse<object> { Data = default! };
         }
     }
 }
